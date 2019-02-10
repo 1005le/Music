@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.impl.MainActivity">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <RelativeLayout
+            android:id="@+id/myrelative1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayoutSearchBH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolBarMainActivity"
+                    android:background="#1743E6"
+                    app:title="Beauty Music"
+                    app:titleTextColor="#F5EFEF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+
+            <LinearLayout
+                android:id="@+id/linnear2"
+                android:layout_below="@+id/appBarLayoutSearchBH"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/myTabLayout"
+                    app:tabIndicatorColor="#e90b0b"
+                    app:tabMode="fixed"
+                    app:tabTextColor="#EEEBEE"
+                    app:tabIndicatorHeight="2dp"
+                    android:background="#0C72C4"
+                    app:tabSelectedTextColor="#C715A3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                </android.support.design.widget.TabLayout>
+
+                <android.support.v4.view.ViewPager
+
+                    android:id="@+id/myViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                </android.support.v4.view.ViewPager>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>
+
+    <include layout="@layout/content_bottom"/>
+
+</RelativeLayout>

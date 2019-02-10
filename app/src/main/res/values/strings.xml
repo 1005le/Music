@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Music_Vinh</string>
+    <string name="beauty">Beauty Music</string>
+    <string name="song">SONGS</string>
+    <string name="album">ALBUMS</string>
+    <string name="artist">ARTISTS</string>
+    <string name="playQueue">Playing Queue</string>
+</resources>
