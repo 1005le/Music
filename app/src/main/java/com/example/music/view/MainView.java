@@ -6,6 +6,5 @@ import java.util.ArrayList;
 
 public interface MainView {
      void showSong(ArrayList<Song> songs);
-
-    void showMessage(String message);
+     void showMessage(String message);
 }

@@ -1,6 +1,7 @@
 package com.example.music.injection;
 
 import com.example.music.interactor.impl.MainInteractorImpl;
+import com.example.music.presenter.MainPresenter;
 import com.example.music.presenter.impl.MainPresenterImpl;
 import com.example.music.view.MainView;
 
@@ -21,7 +22,8 @@ public class MainViewModule {
     }
 
     @Provides
-    public MainPresenterImpl providePresenter(MainView mainView, MainInteractorImpl mainInteractorImpl) {
+    public MainPresenter providePresenter(MainView mainView, MainInteractorImpl mainInteractorImpl) {
         return new MainPresenterImpl(mainInteractorImpl, mainView);
     }
+
 }

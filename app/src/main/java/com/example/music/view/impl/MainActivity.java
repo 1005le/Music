@@ -17,35 +17,53 @@ import android.widget.Toast;
 
 import com.example.music.R;
 import com.example.music.adapter.MainViewAdapter;
+import com.example.music.adapter.SongAdapter;
 import com.example.music.injection.AppComponent;
 import com.example.music.injection.DaggerMainViewComponent;
 import com.example.music.injection.MainViewModule;
 import com.example.music.model.Song;
+import com.example.music.presenter.MainPresenter;
 import com.example.music.view.MainView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.music.view.impl.SongFragment.songAdapter;
 import static com.example.music.view.impl.SongFragment.songList;
 
-public class MainActivity extends BaseActivity implements MainView{
+public class MainActivity extends BaseActivity implements MainView, SongAdapter.ItemClickListener {
 
+    @BindView(R.id.myTabLayout)
     TabLayout tabLayout;
+    @BindView(R.id.myViewPager)
     ViewPager viewPager;
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.toolBarMainActivity)
     Toolbar toolbarMainActivity;
+    @BindView(R.id.linearBottom)
     LinearLayout linearLayoutBottom;
+    @BindView(R.id.tvNameSong)
     TextView tvNameSong;
+    @BindView(R.id.tvNameArtist)
     TextView tvNameArtist;
+    @BindView(R.id.imgButtonPause)
     ImageButton imgPause;
-    public static Song song;
+
+    @Inject
+    MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp);
-        init();
+       // init();
+        ButterKnife.bind(this);
         initTab();
         act();
     }
@@ -140,7 +158,8 @@ public class MainActivity extends BaseActivity implements MainView{
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        //trong ham nay se chua thong tin bottom
+       // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     private List<Song> filter(List<Song>listItem, String query){
@@ -155,5 +174,15 @@ public class MainActivity extends BaseActivity implements MainView{
             }
         }
         return filterModel;
+    }
+
+    @Override
+    public void onItemClick(Song song, int position) {
+          song = SongFragment.songList.get(position);
+        Toast.makeText(this, "activity", Toast.LENGTH_SHORT).show();
+        // mainPresenter.onItemSelected(song, position);
+        tvNameSong.setText(song.getName());
+        tvNameArtist.setText(song.getNameArtist());
+        imgPause.setImageResource(R.drawable.ic_pause);
     }
 }

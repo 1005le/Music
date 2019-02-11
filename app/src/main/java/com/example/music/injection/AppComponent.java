@@ -11,5 +11,4 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(MusicApplication musicApplication);
-
 }

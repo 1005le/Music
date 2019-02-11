@@ -7,6 +7,7 @@ import com.example.music.interactor.impl.MainInteractorImpl;
 import com.example.music.model.Song;
 import com.example.music.presenter.MainPresenter;
 import com.example.music.view.MainView;
+import com.example.music.view.impl.SongFragment;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
   * - Đẩy dữ liệu lên lớp V.
  */
 public class MainPresenterImpl implements MainInteractor, MainPresenter {
+
     private MainInteractorImpl mainInteractorImpl;
     private MainView mainView;
 
@@ -40,11 +42,13 @@ public class MainPresenterImpl implements MainInteractor, MainPresenter {
 
     @Override
     public void loadData() {
-        mainInteractorImpl.createData();
-    }
+        mainInteractorImpl.getSongCategories(this);
+      }
 
     @Override
     public void onItemSelected(Song song, int position) {
+        //song = SongFragment.songList.get(position);
         mainView.showMessage(String.format(song.getName() + " ->" + " Position %d clicked", position));
     }
+
 }

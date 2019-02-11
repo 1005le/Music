@@ -4,15 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.music.R;
 import com.example.music.model.Song;
+import com.example.music.view.impl.SongFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
 
-     final Song song = songList.get(i);
+   //  final Song song = songList.get(i);
+        final Song song = SongFragment.songList.get(i);
         //  Log.d("hello3",songList.size()+"\n"+songList.get(3).getName()+"\n"+song.getNameArtist());
         viewHolder.tvNameSong.setText(song.getName());
         viewHolder.tvNameArtist.setText(song.getNameArtist());
@@ -56,6 +60,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                 if (itemClickListener != null) {
                     itemClickListener.onItemClick(song, i);
                 }
+                Log.d("hello",song.getName()+"-" +song.getNameArtist());
+               // Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
 //                    Intent intent = new Intent(context, PlayActivity.class);
 //                    intent.putExtra("song", songList.get(getPosition()));
 //                    context.startActivity(intent);
@@ -66,6 +72,13 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return songList.size();
+    }
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(Song song, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -86,12 +99,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         }
     }
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-    public interface ItemClickListener {
-        void onItemClick(Song song, int position);
-    }
     public void getFilte(List<Song> listItem){
         songList = new ArrayList<>();
         songList.addAll(listItem);
